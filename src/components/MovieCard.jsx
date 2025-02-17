@@ -11,7 +11,8 @@ import Stack from "@mui/material/Stack";
 import SearchIcon from "@mui/icons-material/Search";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
-export default function MovieCard() {
+export default function MovieCard(props) {
+  const { data } = props;
   return (
     <Card
       sx={{
@@ -51,14 +52,14 @@ export default function MovieCard() {
             variant="h4"
             sx={{ textTransform: "capitalize", "&:hover": { color: "red" } }}
           >
-            The Gorge
+            {data.media_type === "movie" ? data.title : data.name}
           </Typography>
           <Typography>
             <Typography
               component={"span"}
               sx={{ fontSize: "24px", color: "#f5f5f5" }}
             >
-              7.85
+              {data.vote_average}
             </Typography>
             <Typography
               component={"span"}
@@ -83,7 +84,9 @@ export default function MovieCard() {
               display: "inline-block",
             }}
           >
-            2024-02-10
+            {data.media_type === "movie"
+              ? data.release_date
+              : data.first_air_date}
           </Typography>
           <List
             sx={{
@@ -95,13 +98,7 @@ export default function MovieCard() {
               },
             }}
           >
-            {[
-              { genre: "Action" },
-              { genre: "Romance" },
-              { genre: "Science Fiction " },
-              { genre: "Horror" },
-              { genre: "Thriller" },
-            ].map((genre, index) => (
+            {data.genres.map((genre, index) => (
               <ListItem
                 key={index}
                 sx={{
@@ -127,7 +124,7 @@ export default function MovieCard() {
                         color: "#67686a",
                       }}
                     >
-                      {genre.genre}
+                      {genre}
                     </Typography>
                   }
                 />
@@ -144,10 +141,17 @@ export default function MovieCard() {
             },
           }}
         >
-          <Typography component={"p"}>
-            Two highly trained operatives grow close from a distance after being
-            sent to guard opposite sides of a mysterious gorge. When an evil
-            below emerges, they must work together to survive what lies within.
+          <Typography
+            component={"p"}
+            sx={{
+              display: "-webkit-box",
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+              WebkitLineClamp: 4,
+              textOverflow: "ellipsis",
+            }}
+          >
+            {data.overview}
           </Typography>
         </Box>
         <Box marginTop={4}>
@@ -163,11 +167,17 @@ export default function MovieCard() {
           >
             <Box
               component={"a"}
+              target="_blank"
+              href={`https://www.youtube.com/results?search_query=${
+                data.media_type === "movie" ? data.title : data.name
+              }+1080p+trailer`}
               variant="contained"
               sx={{
                 display: "flex",
                 fontSize: "0.875rem",
+                textDecoration: "none",
                 alignItems: "center",
+                color: "#fff",
                 gap: "8px",
                 transition: "all 0.3s",
                 backgroundColor: "#FF0000",
@@ -198,8 +208,13 @@ export default function MovieCard() {
             >
               <Box
                 component={"a"}
+                target="_blank"
+                href={`https://yts.mx/browse-movies/${
+                  data.media_type === "movie" ? data.title : data.name
+                }/all/all/0/latest/0/all`}
                 variant="contained"
                 sx={{
+                  textDecoration: "none",
                   display: "flex",
                   fontSize: "0.875rem",
                   justifyContent: "center",
@@ -227,8 +242,7 @@ export default function MovieCard() {
       </Box>
       <Box
         sx={{
-          backgroundImage:
-            "url(https://image.tmdb.org/t/p/w780/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg&quot)",
+          backgroundImage: `url('https://image.tmdb.org/t/p/w780${data.backdrop_path}')`,
           top: "0",
           right: "0",
           width: "80%",
