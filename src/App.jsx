@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 
+import ErrorMessage from "./components/Error";
 import MovieCard from "./components/MovieCard";
 import { moviesWithGenre, tvShowsWithGenre } from "./services/movie";
 
@@ -25,7 +26,7 @@ function App() {
     fetchData();
   }, []);
 
-  if (error) return <div>Error: {error}</div>;
+  if (error) return <ErrorMessage />;
 
   return (
     <Grid

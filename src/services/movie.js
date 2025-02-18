@@ -17,7 +17,9 @@ async function fetchWithGenres(fetchDataFn) {
   }, {});
 
   return movies.map((item) => {
-    const updatedGenres = item.genre_ids.map((genreId) => genreMap[genreId]);
+    const updatedGenres = item.genre_ids.map(
+      (genreId) => genreMap[genreId] || null
+    );
     return {
       ...item,
       genres: updatedGenres,

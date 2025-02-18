@@ -11,8 +11,7 @@ import Stack from "@mui/material/Stack";
 import SearchIcon from "@mui/icons-material/Search";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
-export default function MovieCard(props) {
-  const { data } = props;
+export default function MovieCard({ data }) {
   return (
     <Card
       sx={{
@@ -20,6 +19,7 @@ export default function MovieCard(props) {
         borderRadius: "10px",
         position: "relative",
         width: "100%",
+        height: "4  00px",
         cursor: "pointer",
         transition: "transform 0.3s ease-in-out",
         "&:hover": {
@@ -32,6 +32,7 @@ export default function MovieCard(props) {
           zIndex: "2",
           position: "relative",
           padding: "16px",
+          height: "100%",
           background:
             "linear-gradient(to right, #0d0d0c 50%, transparent 100%)",
           "@media (max-width: 968px)": {
@@ -41,7 +42,7 @@ export default function MovieCard(props) {
         }}
       >
         <Box
-          width={"60%"}
+          width={"100%"}
           sx={{
             "@media (max-width: 968px)": {
               width: "100%",
@@ -98,38 +99,40 @@ export default function MovieCard(props) {
               },
             }}
           >
-            {data.genres.map((genre, index) => (
-              <ListItem
-                key={index}
-                sx={{
-                  padding: 0,
-                  width: "auto",
-                  "&::after": {
-                    fontSize: "12px",
-                    content: '"\\2022"',
-                    marginRight: "4px",
-                    marginLeft: "4px",
-                    color: "#67686a",
-                  },
-                  "&:last-child::after": {
-                    content: '""',
-                  },
-                }}
-              >
-                <ListItemText
-                  primary={
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        color: "#67686a",
-                      }}
-                    >
-                      {genre}
-                    </Typography>
-                  }
-                />
-              </ListItem>
-            ))}
+            {data.genres
+              .filter((genre) => genre)
+              .map((genre, index) => (
+                <ListItem
+                  key={index}
+                  sx={{
+                    padding: 0,
+                    width: "auto",
+                    "&::after": {
+                      fontSize: "12px",
+                      content: '"\\2022"',
+                      marginRight: "4px",
+                      marginLeft: "4px",
+                      color: "#67686a",
+                    },
+                    "&:last-child::after": {
+                      content: '""',
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary={
+                      <Typography
+                        sx={{
+                          fontSize: "12px",
+                          color: "#67686a",
+                        }}
+                      >
+                        {genre}
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              ))}
           </List>
         </Box>
         <Box

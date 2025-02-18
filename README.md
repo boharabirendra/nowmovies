@@ -1,8 +1,22 @@
-# React + Vite
+# Clone of https://nowmovies.netlify.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tech used
 
-Currently, two official plugins are available:
+- React.js
+- Material UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Running locally
+
+```sh
+ git clone https://github.com/boharabirendra/nowmovies.git
+
+ cd nowmovies
+
+ Create .env file and see the example from .env.example
+
+ npm install
+
+ npm run dev
+```
+
+### Data are fetch from themoviedb.org
