@@ -25,6 +25,9 @@ export default function MovieCard({ data }) {
         "&:hover": {
           transform: "scale(1.03)",
         },
+        "@media (max-width: 968px)": {
+          height: "auto",
+        },
       }}
     >
       <Box
@@ -141,6 +144,7 @@ export default function MovieCard({ data }) {
           sx={{
             "@media (max-width: 968px)": {
               width: "100%",
+              marginTop: "40px",
             },
           }}
         >
