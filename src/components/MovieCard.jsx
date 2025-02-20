@@ -19,7 +19,7 @@ export default function MovieCard({ data }) {
         borderRadius: "10px",
         position: "relative",
         width: "100%",
-        height: "4  00px",
+        height: "400px",
         cursor: "pointer",
         transition: "transform 0.3s ease-in-out",
         "&:hover": {
